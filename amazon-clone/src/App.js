@@ -1,20 +1,25 @@
-import React from 'react'
-import {BrowserRouter, Routes, Route} from "react-router-dom";
-import { HomePage } from './components';
+import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HomePage, NavBar, Checkout, SearchResults, ProductPage } from './components';
+
 
 const App = () => {
   return (
-   
-      <BrowserRouter>
-      
+
+    <BrowserRouter>
+      <NavBar /> 
+
       <Routes>
 
-        <Route exact path="/" element={<HomePage/>} />
-        
+        <Route exact path="/" element={<HomePage />} />
+        <Route path="/search" element={<SearchResults/>} />
+        <Route path="/product/:id" element={<ProductPage />} />
+        <Route path="/checkout" element={<Checkout />} />
+
       </Routes>
-      
-      </BrowserRouter>
-   
+
+    </BrowserRouter>
+
   )
 }
 

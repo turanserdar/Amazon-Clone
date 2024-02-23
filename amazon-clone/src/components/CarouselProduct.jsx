@@ -17,16 +17,19 @@ const CarouselProduct = () => {
                 navigation={true}
                 modules={[Navigation]}
             >
-                {Array.from({length:9}, (_, i) => 
+                {Array.from({ length: 9 }, (_, i) => 
+               
+               {/* SwiperSlide component represents each slide.
+        The key={i} prop provides a unique identifier for efficient element management by React.*/}
                 <SwiperSlide key={i}>
-                        <Link to={`/product${i}`}>
-                        <img src={`../images/product_${i}_small.jpg`}/>
+                        <Link to={`/product/${i}`}>
+                            <img src={`../images/product_${i}_small.jpg`} />
                         </Link>
-                        
 
-                </SwiperSlide>
-                    
-                    )}
+
+                    </SwiperSlide>
+
+                )}
 
 
             </Swiper>

@@ -1,20 +1,30 @@
+import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { callAPI } from '../utils/CallApi';
 import { ProductDetails } from './';
 import { CAD_CURRENCY } from '../utils/constants'
+import { addToCart } from '../redux/cartSlice'
 
 
 const ProductPage = () => {
   //  This line uses the useParams hook to extract the parameters from the URL. If a URL template like /product/:id is defined, this hook allows you to access the id parameter.
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const [quantity, setQuantity] = useState("1");
+  const dispatch = useDispatch ();
 
   const getProduct = () => {
     callAPI(`data/products.json`).then((productResults) => {
       setProduct(productResults[id]);
     });
   };
+
+  const addQuantityToProduct = () => {
+
+    setProduct(product.quantity = quantity);
+    return product;
+  }
 
   useEffect(() => {
     getProduct();
@@ -52,16 +62,15 @@ const ProductPage = () => {
             <div className='text-base xl:text-lg  text-blue-500 font-semibold mt-1' >FREE Delivery</div>
             <div className='text-base xl:text-lg text-green-700 font-semibold mt-1'>In Stock</div>
             <div className='text-base xl:text-lg mt-1'>Quantity:
-              <select className='p-2 bg-white border rounded-md focus:border-indigo-600'>
+              <select onChange={(e) => setQuantity(e.target.value)} className='p-2 bg-white border rounded-md focus:border-indigo-600'>
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
               </select>
-
-
+              <Link to={"/checkout"}>
+                <button onClick={() => dispatch(addToCart(addQuantityToProduct()))} className='btn'>Add to Cart</button>
+              </Link>
             </div>
-
-            <button className='bg-yellow-400 w-full p-3 text-xs xl:text-sm rounded hover:bg-yellow-500'>Add to Cart</button>
           </div>
         </div>
 

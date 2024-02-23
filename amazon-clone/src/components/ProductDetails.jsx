@@ -8,12 +8,12 @@ const ProductDetails = ({ product, ratings }) => {
             <div className='text-sm xl:text-base  mb-1'> by <span className='text-blue-500'>{product.brand}</span></div>
             {ratings &&
                 <div className='text-xl xl:text-base mb-1'> <ProductRatings
-                avgRating={product.avgRating}
-                ratings={product.ratings}
-              /></div>}
+                    avgRating={product.avgRating}
+                    ratings={product.ratings}
+                /></div>}
             <div className='text-xl xl:text-base mb-1'>{product.avgRating}</div>
             <div className='text-xs xl:text-sm font-bold mb-1'>{product.attribute}</div>
-           
+            <div className='font-medium text-black p-2' ><ProductBadge badge={product.badge} /></div>
         </div>
     );
 };

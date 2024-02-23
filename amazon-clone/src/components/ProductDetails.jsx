@@ -13,7 +13,7 @@ const ProductDetails = ({ product, ratings }) => {
               /></div>}
             <div className='text-xl xl:text-base mb-1'>{product.avgRating}</div>
             <div className='text-xs xl:text-sm font-bold mb-1'>{product.attribute}</div>
-            <div ><ProductBadge badge={product.badge} /></div>
+           
         </div>
     );
 };
